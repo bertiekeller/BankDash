@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankDash - Banking Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="ri-bank-line"></i>
+                <span>BankDash</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i class="ri-dashboard-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ri-exchange-dollar-line"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ri-bank-card-line"></i>
+                    <span>Cards</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ri-pie-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ri-message-3-line"></i>
+                    <span>Messages</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <i class="ri-search-line"></i>
+                    <input type="text" placeholder="Search for transactions, cards, etc...">
+                </div>
+                <div class="header-right">
+                    <button class="notification-btn">
+                        <i class="ri-notification-3-line"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" id="userAvatar">
+                        <span id="userName">John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Balance Cards -->
+                <div class="balance-cards">
+                    <div class="balance-card primary">
+                        <div class="balance-header">
+                            <h3>Total Balance</h3>
+                            <i class="ri-wallet-3-line"></i>
+                        </div>
+                        <div class="balance-amount">$0.00</div>
+                        <div class="balance-trend positive">
+                            <i class="ri-arrow-up-line"></i>
+                            <span>Updated in real-time</span>
+                        </div>
+                    </div>
+                    <div class="balance-card">
+                        <div class="balance-header">
+                            <h3>Income</h3>
+                            <i class="ri-arrow-down-circle-line"></i>
+                        </div>
+                        <div class="balance-amount">$0.00</div>
+                        <div class="balance-trend positive">
+                            <i class="ri-arrow-up-line"></i>
+                            <span>From all transactions</span>
+                        </div>
+                    </div>
+                    <div class="balance-card">
+                        <div class="balance-header">
+                            <h3>Expenses</h3>
+                            <i class="ri-arrow-up-circle-line"></i>
+                        </div>
+                        <div class="balance-amount">$0.00</div>
+                        <div class="balance-trend negative">
+                            <i class="ri-arrow-down-line"></i>
+                            <span>From all transactions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="transactions-section">
+                    <div class="section-header">
+                        <h2>Recent Transactions</h2>
+                        <button class="view-all-btn" onclick="document.getElementById('addTransactionModal').style.display='block'">Add Transaction</button>
+                    </div>
+                    <div class="transactions-list">
+                        <!-- Transactions will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Cards Section -->
+                <div class="cards-section">
+                    <div class="section-header">
+                        <h2>My Cards</h2>
+                        <button class="add-card-btn" onclick="document.getElementById('addCardModal').style.display='block'">
+                            <i class="ri-add-line"></i>
+                            Add Card
+                        </button>
+                    </div>
+                    <div class="cards-grid">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="addTransactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Transaction</h2>
+                <span class="close" onclick="document.getElementById('addTransactionModal').style.display='none'">&times;</span>
+            </div>
+            <form id="addTransactionForm">
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <input type="text" id="category" name="category" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" required>
+                </div>
+                <div class="form-group">
+                    <label for="merchant">Merchant</label>
+                    <input type="text" id="merchant" name="merchant" required>
+                </div>
+                <button type="submit" class="auth-btn">Add Transaction</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Card Modal -->
+    <div id="addCardModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Card</h2>
+                <span class="close" onclick="document.getElementById('addCardModal').style.display='none'">&times;</span>
+            </div>
+            <form id="addCardForm">
+                <div class="form-group">
+                    <label for="cardType">Card Type</label>
+                    <select id="cardType" name="cardType" required>
+                        <option value="credit">Credit Card</option>
+                        <option value="debit">Debit Card</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required pattern="[0-9]{16}" maxlength="16">
+                </div>
+                <div class="form-group">
+                    <label for="cardHolder">Card Holder Name</label>
+                    <input type="text" id="cardHolder" name="cardHolder" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryMonth">Expiry Month</label>
+                    <input type="number" id="expiryMonth" name="expiryMonth" min="1" max="12" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryYear">Expiry Year</label>
+                    <input type="number" id="expiryYear" name="expiryYear" min="2024" max="2034" required>
+                </div>
+                <button type="submit" class="auth-btn">Add Card</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script>
+        // Handle transaction form submission
+        addTransactionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const transactionData = {
+                type: e.target.type.value,
+                category: e.target.category.value,
+                amount: parseFloat(e.target.amount.value),
+                description: e.target.description.value,
+                merchant: e.target.merchant.value
+            };
+            await addTransaction(transactionData);
+            document.getElementById('addTransactionModal').style.display = 'none';
+            e.target.reset();
+        });
+
+        // Handle card form submission
+        addCardForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const cardData = {
+                cardType: e.target.cardType.value,
+                cardNumber: e.target.cardNumber.value,
+                cardHolder: e.target.cardHolder.value,
+                expiryMonth: parseInt(e.target.expiryMonth.value),
+                expiryYear: parseInt(e.target.expiryYear.value)
+            };
+            await addCard(cardData);
+            document.getElementById('addCardModal').style.display = 'none';
+            e.target.reset();
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html> 
